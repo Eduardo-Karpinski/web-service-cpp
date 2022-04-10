@@ -124,7 +124,9 @@ void createRoutes(crow::SimpleApp &app) {
 
     CROW_ROUTE(app, "/")([](){
         crow::mustache::set_base(".");
-        return crow::mustache::load("static/index.html").render();
+        crow::mustache::context ctx;
+        ctx["word"] = " on my web service";
+        return crow::mustache::load("static/index.html").render(ctx);
     });
 
 }
