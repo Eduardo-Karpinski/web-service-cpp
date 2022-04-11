@@ -7,7 +7,7 @@
 
 void createRoutes(crow::SimpleApp &app) {
 
-    CROW_ROUTE(app, "/get")([](){
+    CROW_ROUTE(app, "/get").methods("GET"_method)([](){
 
         MYSQL *connection = connection::get();
 
@@ -41,7 +41,7 @@ void createRoutes(crow::SimpleApp &app) {
 
     });
     
-    CROW_ROUTE(app, "/save/<string>/<string>")([](std::string name, std::string password){
+    CROW_ROUTE(app, "/save/<string>/<string>").methods("POST"_method)([](std::string name, std::string password){
 
         MYSQL *connection = connection::get();
 
@@ -58,7 +58,7 @@ void createRoutes(crow::SimpleApp &app) {
 
     });
 
-    CROW_ROUTE(app, "/delete/<int>")([](long id){
+    CROW_ROUTE(app, "/delete/<int>").methods("POST"_method)([](long id){
 
         MYSQL *connection = connection::get();
 
@@ -75,7 +75,7 @@ void createRoutes(crow::SimpleApp &app) {
 
     });
 
-    CROW_ROUTE(app, "/update/<int>/<string>/<string>")([](long id, std::string name, std::string password){
+    CROW_ROUTE(app, "/update/<int>/<string>/<string>").methods("POST"_method)([](long id, std::string name, std::string password){
 
         MYSQL *connection = connection::get();
 
@@ -92,7 +92,7 @@ void createRoutes(crow::SimpleApp &app) {
 
     });
 
-    CROW_ROUTE(app, "/get/<int>")([](long id){
+    CROW_ROUTE(app, "/get/<int>").methods("GET"_method)([](long id){
 
         MYSQL *connection = connection::get();
 
