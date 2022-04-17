@@ -3,10 +3,11 @@
 
 namespace connection {
 
-    std::string url = {};
+    std::string host = {};
     std::string username = {};
     std::string password = {};
     std::string database = {};
+    unsigned int port = {};
 
     void getConnectionProperties() {
 
@@ -26,14 +27,16 @@ namespace connection {
                 ptr = strtok(NULL, "=");
                 std::string value = ptr;
 
-                if (field == "connection.url") {
-                    url = value;
+                if (field == "connection.host") {
+                    host = value;
                 } else if (field == "connection.username") {
                     username = value;
                 } else if (field == "connection.password") {
                     password = value;
                 } else if (field == "connection.database") {
                     database = value;
+                } else if (field == "connection.port") {
+                    port = std::stoi(value);
                 }
 
             }
@@ -52,7 +55,7 @@ namespace connection {
             return nullptr;
         }
 
-        connection = mysql_real_connect(connection, url.c_str(), username.c_str(), password.c_str(), database.c_str(), 0, NULL, 0);
+        connection = mysql_real_connect(connection, host.c_str(), username.c_str(), password.c_str(), database.c_str(), port, NULL, 0);
 
         if (!connection) {
             std::cout << "ERROR (2)" << std::endl;
