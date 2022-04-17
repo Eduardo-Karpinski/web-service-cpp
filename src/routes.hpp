@@ -1,10 +1,6 @@
 #ifndef service_route
 #define service_route
 
-#include "crow.h"
-#include "conection.hpp"
-#include <cstring>
-
 void createRoutes(crow::SimpleApp &app) {
 
     CROW_ROUTE(app, "/get").methods("GET"_method)([](){
