@@ -34,17 +34,13 @@ void createTable() {
 int main() {
 
     connection::getConnectionProperties();
-
     createTable();
 
     crow::SimpleApp app;
-
     app.loglevel(crow::LogLevel::Warning);
-
     createRoutes(app);
 
-    std::cout << "Web service online" << std::endl;
-
+    std::cout << "Web service online localhost:18080" << std::endl;
     app.port(18080).multithreaded().run();
 
     return 0;

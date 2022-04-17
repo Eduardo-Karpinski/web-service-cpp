@@ -10,10 +10,12 @@ namespace connection {
 
     void getConnectionProperties() {
 
-        std::string line;
         std::ifstream propertiesFile("/etc/connection.properties");
 
         if (propertiesFile.is_open()) {
+
+            std::string line;
+            
             while (getline(propertiesFile, line)) {
 
                 char char_array[line.length() + 1];
@@ -63,10 +65,8 @@ namespace connection {
     }
 
     void close(MYSQL *connection) {
-
         std::cout << "connection ("<<mysql_thread_id(connection)<<") close" << std::endl;
         mysql_close(connection);
-        
     }
 
 }
