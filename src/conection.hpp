@@ -11,7 +11,7 @@ namespace connection {
     void getConnectionProperties() {
 
         std::string line;
-        std::ifstream propertiesFile("connection.properties");
+        std::ifstream propertiesFile("/etc/connection.properties");
 
         if (propertiesFile.is_open()) {
             while (getline(propertiesFile, line)) {
